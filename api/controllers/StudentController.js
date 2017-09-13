@@ -45,8 +45,8 @@ module.exports = {
    */
   read: function (req, res) {
 
-    client.get(endpoint, function (data, response) {
-        return res.view('read', {students: data});
+    client.get(endpoint, function (data, response) { //request to the api
+        return res.view('read', {students: data}); //this is the request for the data
     }).on('error', function (err) {
         return res.view('read', {error: { message: "There was an error getting the students"}});
     });
@@ -74,7 +74,7 @@ module.exports = {
           headers: { "Content-Type": "application/json" }
       };
 
-      client.put(endpoint + "/" + req.body.id, args, function (data, response) {
+      client.put(endpoint + "/" + req.body.student_id, args, function (data, response) {
 
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);

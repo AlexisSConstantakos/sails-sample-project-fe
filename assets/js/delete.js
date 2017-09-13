@@ -32,6 +32,13 @@
    $(function(){
 
    	//code goes here
+    $('#student_id').selectpicker({
+      style: 'btn-info',
+      size: 10,
+      liveSearch: true,
+      tickIcon: "glyphicon-user",
+      header: false
+    });
 
    })
 

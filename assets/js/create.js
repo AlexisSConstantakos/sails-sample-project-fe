@@ -29,7 +29,34 @@
   $(function(){
 
   	//code goes here
+    $("#addStudentForm").validate({
+      errorClass: "text-danger",
 
+      rules: {
+        // at least 15€ when bonus material is included
+        first_name: {
+          required: true,
+          minlength: 2
+        },
+        last_name: {
+          required: true,
+          minlength: 2
+        },
+        start_date: {
+          required: true,
+          dateISO: true
+        }
+    },
+
+        messages: {
+        // at least 15€ when bonus material is included
+          first_name: {
+          required: "success",
+          minlength: "unsuccessful"
+        }
+      }
+
+    })
   })
 
 })();
