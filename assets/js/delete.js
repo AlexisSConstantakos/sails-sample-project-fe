@@ -32,7 +32,7 @@
    $(function(){
 
    	//code goes here
-    $('#student_id').selectpicker({
+    $('#cast_id').selectpicker({
       style: 'btn-info',
       size: 10,
       liveSearch: true,

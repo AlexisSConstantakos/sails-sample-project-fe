@@ -43,13 +43,13 @@
   $(function() {
     let selected;
     //dispable all input fields at first
-    $("#updateStudentForm :input").prop("disabled", true);
-    $("#student_id").on("change", function() {
-      $("#updateStudentForm :input").prop("disabled", false);
+    $("#updateCastForm :input").prop("disabled", true);
+    $("#cast_id").on("change", function() {
+      $("#updateCastForm :input").prop("disabled", false);
       selected = $(this).val();
-      $.get("http://localhost:1337/student/" + selected, function(student) {
+      $.get("http://localhost:1337/cast/" + selected, function(cast) {
         //loop over the student i got back from the api
-        $.each(student, function(key, val) {
+        $.each(cast, function(key, val) {
           //find the input field that matches the name of the key
           let el = $('[name="' + key + '"]');
           //find the type of field that we selected
@@ -69,28 +69,32 @@
       })
     });
   })
-  $("#updateStudentForm").validate({
+  $("#updateCastForm").validate({
     errorClass: "text-danger",
     rules: {
-      first_name: {
+      firstName: {
         required: true,
         minlength: 2,
       },
-      last_name: {
+      lastName: {
         required: true,
         minlength: 2
       },
-      start_date: {
-        dateISO: true,
+      email: {
+        required: true,
+        minlength: 2
+      },
+      title: {
         required: true,
         minlength: 2
       }
     },
     messages: {
-      first_name: {
+      firstName: {
         required: "this is required",
-        minlength: "this is the new error"
+        minlength: "error"
       }
     }
-  });
+  })
+
 })();

@@ -7,7 +7,7 @@
 
 var Client = require('node-rest-client').Client;
 var client = new Client();
-var endpoint = "http://localhost:1337/student"
+var endpoint = "http://localhost:1337/cast"
 
 module.exports = {
 
@@ -28,7 +28,8 @@ module.exports = {
         client.post(endpoint, args, function (data, response) {
             // return res.view('create', {success: { message: "Record added successfully"}});
             if(response.statusCode != "201"){
-                req.addFlash("error", data.message.substring(data.message.indexOf("•")));
+                req.addFlash("error",
+                Ωdata.message.substring(data.message.indexOf("•")));
                 return res.redirect('/create');
             }
 
@@ -46,9 +47,9 @@ module.exports = {
   read: function (req, res) {
 
     client.get(endpoint, function (data, response) { //request to the api
-        return res.view('read', {students: data}); //this is the request for the data
+        return res.view('read', {castMembers: data}); //this is the request for the data
     }).on('error', function (err) {
-        return res.view('read', {error: { message: "There was an error getting the students"}});
+        return res.view('read', {error: { message: "There was an error getting the cast members"}});
     });
 
   },
@@ -62,9 +63,9 @@ module.exports = {
     if(req.method != "POST"){
 
       client.get(endpoint, function (data, response) {
-        return res.view('update', {students: data});
+        return res.view('update', {castMembers: data});
       }).on('error', function (err) {
-          return res.view('update', {error: { message: "There was an error getting the students"}});
+          return res.view('update', {error: { message: "There was an error getting the cast"}});
       });
 
     }else{
@@ -74,7 +75,7 @@ module.exports = {
           headers: { "Content-Type": "application/json" }
       };
 
-      client.put(endpoint + "/" + req.body.student_id, args, function (data, response) {
+      client.put(endpoint + "/" + req.body.id, args, function (data, response) {
 
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);
@@ -97,14 +98,14 @@ module.exports = {
     if(req.method != "POST"){
 
       client.get(endpoint, function (data, response) {
-        return res.view('delete', {students: data});
+        return res.view('delete', {castMembers: data});
       }).on('error', function (err) {
-          return res.view('delete', {error: { message: "There was an error getting the students"}});
+          return res.view('delete', {error: { message: "There was an error getting the cast members"}});
       });
 
     }else{
 
-      client.delete(endpoint + "/" + req.body.student_id, function (data, response) {
+      client.delete(endpoint + "/" + req.body.id, function (data, response) {
 
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);

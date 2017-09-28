@@ -29,28 +29,32 @@
   $(function(){
 
   	//code goes here
-    $("#addStudentForm").validate({
+    $("#addCastForm").validate({
       errorClass: "text-danger",
 
       rules: {
         // at least 15€ when bonus material is included
-        first_name: {
+        firstName: {
           required: true,
           minlength: 2
         },
-        last_name: {
+        lastName: {
           required: true,
           minlength: 2
         },
-        start_date: {
+        email: {
           required: true,
-          dateISO: true
+          minlength: 2
+        },
+        title: {
+          required: true,
+          minlength: 2
         }
     },
 
         messages: {
         // at least 15€ when bonus material is included
-          first_name: {
+          firstName: {
           required: "success",
           minlength: "unsuccessful"
         }
